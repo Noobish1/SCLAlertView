@@ -169,20 +169,27 @@ NSTimer *durationTimer;
     return self;
 }
 
-- (instancetype)initWithNewWindow
+- (instancetype)initWithNewWindowWithWindowLevel:(UIWindowLevel)windowLevel
 {
     self = [self init];
     if(self)
     {
         // Create a new one to show the alert
         UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
-        alertWindow.windowLevel = UIWindowLevelAlert;
+        alertWindow.windowLevel = windowLevel;
         alertWindow.backgroundColor = [UIColor clearColor];
         alertWindow.rootViewController = self;
         self.SCLAlertWindow = alertWindow;
         
         self.usingNewWindow = YES;
     }
+    return self;
+}
+
+- (instancetype)initWithNewWindow
+{
+    self = [self initWithNewWindowWithWindowLevel:UIWindowLevelAlert];
+    
     return self;
 }
 
